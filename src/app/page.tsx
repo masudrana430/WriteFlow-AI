@@ -1,65 +1,81 @@
-import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Sparkles } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="flex flex-col min-h-screen">
+      
+      {/* 1. HERO SECTION */}
+      <section className="relative flex flex-col items-center justify-center min-h-[70vh] px-4 pt-20 pb-16 text-center overflow-hidden">
+        
+        {/* Subtle Background Glow */}
+        <div className="absolute inset-0 -z-10 h-full w-full bg-background bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))] dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),rgba(0,0,0,0))]" />
+
+        {/* Badge */}
+        <div className="inline-flex items-center rounded-full border px-3 py-1 text-sm font-semibold mb-8 bg-secondary/50 text-secondary-foreground">
+          <Sparkles className="w-4 h-4 mr-2 text-primary" />
+          WriteFlow AI 2.0 is live
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Headlines */}
+        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight max-w-4xl mb-6">
+          The <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-500">Agentic Workspace</span> for Modern Content Teams
+        </h1>
+
+        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10">
+          WriteFlow AI does not just suggest text — it acts as a background agent that runs tasks autonomously to plan, generate, review, and publish your content.
+        </p>
+
+        {/* CTAs */}
+        <div className="flex flex-col sm:flex-row gap-4 mb-16 z-10">
+          <Link href="/register">
+            <Button size="lg" className="w-full sm:w-auto text-md h-12 px-8 shadow-lg transition-transform hover:-translate-y-1">
+              Start Writing Free <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
+          <Link href="/explore">
+            <Button size="lg" variant="outline" className="w-full sm:w-auto text-md h-12 px-8 bg-background/50 backdrop-blur-sm">
+              Explore Templates
+            </Button>
+          </Link>
         </div>
-      </main>
+
+        {/* ANIMATION REQUIREMENT: Floating Mock-Editor Card */}
+        <div className="relative w-full max-w-3xl mx-auto hidden md:block">
+          {/* Card glow behind */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-32 bg-primary/20 blur-3xl rounded-full" />
+          
+          {/* The actual floating card using native Tailwind animations */}
+          <div className="relative rounded-xl border bg-card text-card-foreground shadow-2xl p-6 transition-transform duration-1000 ease-in-out animate-[pulse_4s_ease-in-out_infinite] hover:-translate-y-2">
+            
+            {/* Fake Window Controls */}
+            <div className="flex items-center gap-2 border-b border-border pb-4 mb-4">
+              <div className="w-3 h-3 rounded-full bg-red-500" />
+              <div className="w-3 h-3 rounded-full bg-yellow-500" />
+              <div className="w-3 h-3 rounded-full bg-green-500" />
+              <span className="text-sm text-muted-foreground font-mono ml-4">agent-draft.ts (Running...)</span>
+            </div>
+            
+            {/* Fake Content Loading */}
+            <div className="space-y-4 text-left">
+              <div className="h-4 bg-muted rounded w-3/4 animate-pulse" />
+              <div className="h-4 bg-muted rounded w-1/2 animate-pulse delay-75" />
+              <div className="h-4 bg-muted rounded w-5/6 animate-pulse delay-150" />
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Placeholders for the remaining 7 sections */}
+      <section className="py-20 border-t">
+        <div className="container mx-auto px-4 text-center text-muted-foreground">
+          <h2 className="text-2xl font-bold mb-4">Other 7 Landing Page Sections Coming Soon...</h2>
+          <p>Features | How it Works | Popular Templates | Pricing | Statistics | Testimonials | FAQ</p>
+        </div>
+      </section>
+
     </div>
   );
 }
